@@ -20,14 +20,6 @@ services:
     container_name: db
     restart: always
     platform: linux/amd64
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=laravel
-      - MYSQL_USER=phper
-      - MYSQL_PASSWORD=secret
-      - MYSQL_ROOT_HOST=%
-      - TZ=Asia/Tokyo
-    
     volumes:
       - db-store:/var/lib/mysql
       - db-store:/etc/mysql/conf.d/my.cnf:delegated
@@ -39,7 +31,7 @@ services:
       - 8088:80
     environment:
       - PMA_ARBITRARY=1
-      - PMA_HOST=laravel
+      - PMA_HOST=db
       - PMA_USER=phper
       - PMA_PASSWORD=secret
     depends_on:
