@@ -8,6 +8,16 @@ use App\Models\Items;
 class ItemService
 {
  
+    public function getListItems (){
+        $items = [];
+        return $items;
+    }
+
+    public function getItemDetail (){
+        $item = null;
+        return $item;
+    }
+
     public function insertItem (){
 
         // Generate image token
