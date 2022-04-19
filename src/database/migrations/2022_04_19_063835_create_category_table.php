@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('address', function (Blueprint $table) {
-            $table->increments('id')->comment('住所ID');
-            $table->string("address")->comment("住所名");
+        Schema::create('category', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string("category_name");
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('category');
     }
 };

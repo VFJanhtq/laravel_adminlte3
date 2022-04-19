@@ -12,10 +12,10 @@
             </ul>
         </nav>
         <div class="btn btn-success btn-block">
-            <a href="{{ route('viewAddress') }}">Address</a>
+            <a href="{{ route('item.index') }}">Item View</a>
         </div>
         <div class="btn btn-danger btn-block">
-            <a href="{{ route('viewPersons') }}">Persons</a>
+            <a href="{{ route('item.detail') }}">Item Detail</a>
         </div>
     </div>
 
