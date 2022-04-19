@@ -36,4 +36,6 @@ Route::prefix('item')->group(function () {
     Route::get('/index', [App\Http\Controllers\ItemController::class, 'index'])->name('item.index');
     Route::get('/detail', [App\Http\Controllers\ItemController::class, 'detail'])->name('item.detail');
     Route::post('/update', [App\Http\Controllers\ItemController::class, 'update'])->name('item.update');
+    Route::get('/upload/image', [App\Http\Controllers\ItemController::class, 'getUploadImage'])->name('item.get.image.upload');
+    Route::post('/upload', [App\Http\Controllers\ItemController::class, 'postUploadImage'])->name('item.post.image.upload');
 });

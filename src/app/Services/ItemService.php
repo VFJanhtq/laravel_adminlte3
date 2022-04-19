@@ -18,6 +18,16 @@ class ItemService
         return $item;
     }
 
+    public function uploadImage ($request) {
+        $file = $request->file('file_upload');
+
+        // File info
+        // https://stackoverflow.com/questions/30964849/how-to-get-file-properties-from-a-post-request-using-laravel-slim
+        echo "File name : " .$file->getClientOriginalName(). "<br/>";
+        echo "File extension: " .$file->getClientOriginalExtension(). "<br/>";;
+        echo "File size : " .$file->getSize(). "<br/>";;
+    }
+
     public function insertItem (){
 
         // Generate image token
