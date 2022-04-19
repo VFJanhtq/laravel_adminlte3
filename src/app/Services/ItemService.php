@@ -23,4 +23,8 @@ class ItemService
 
         return $token;
     }
+
+    public function test() {
+        
+    }
 }
