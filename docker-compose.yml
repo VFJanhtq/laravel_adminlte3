@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  app:
+    build: ./infra/php
+    volumes:
+      - ./src:/data
+
+  # 追記
+  web:
+    image: nginx:1.20-alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./src:/data
+      - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    working_dir: /data
+    # 追記
+  db:
+    build: ./infra/mysql
+    container_name: db
+    restart: always
+    platform: linux/amd64
+    volumes:
+      - db-store:/var/lib/mysql
+      - db-store:/etc/mysql/conf.d/my.cnf:delegated
+
+  phpmyadmin:
+    
+    image: phpmyadmin
+    ports:
+      - 8088:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=phper
+      - PMA_PASSWORD=secret
+    depends_on:
+      - db
+     
+
+volumes:
+  db-store:
