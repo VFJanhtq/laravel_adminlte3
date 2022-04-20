@@ -8,6 +8,10 @@ use App\Models\Address;
 use App\Models\Items;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Cloudinary;
+
+
 
 class ItemController extends Controller
 {
@@ -27,7 +31,10 @@ class ItemController extends Controller
     {
         $id = $request->input('item_id');
         $item = $this->itemService->getItemDetail($id);
-        return view('items.detail', array('item' => $item));
+        $file_name = $item->image_token . "." . $item->image_extension;
+        $image = Storage::url($file_name);
+        //dd($image);
+        return view('items.detail', array('item' => $item, 'image' => $image));
         // $items = Items::where('item_id', $id)->first();
         // return view("items.detail", ['items' => $items]);
     }
@@ -102,5 +109,11 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
+        // $response = cloudinary()->upload($request->file('file')->getRealPath())->getSecurePath();
+
+        // dd($response);
+
+        // return back()
+        //     ->with('success', 'File uploaded successfully');
     }
 }

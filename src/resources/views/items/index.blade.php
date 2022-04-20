@@ -43,7 +43,8 @@
                 <div class="card">
                     <div class="card-header">Add new Item</div>
                     <div class="card-body">
-                        <form action="{{ route('item.create') }}" method="post">
+                        <form action="{{ route('item.post.image.upload') }}" autocomplete="off"
+                            enctype="multipart/form-data" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="">Name</label>
@@ -61,6 +62,11 @@
                                 <label for="">Categpry ID</label>
                                 <input type="text" class="form-control" name="cate_id" value="{{ old('cate_id') }}"
                                     placeholder="Enter ID">
+                                <span class="text-danger error-text capital_city_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Upload</label>
+                                <input name="file_upload" type="file" accept="image/*">
                                 <span class="text-danger error-text capital_city_error"></span>
                             </div>
 

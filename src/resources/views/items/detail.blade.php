@@ -27,7 +27,7 @@
                                     <td>{{ $item->item_name }}</td>
                                     <td>{{ $item->item_price }}</td>
                                     <td>{{ $item->category_id }}</td>
-                                    <td></td>
+                                    <td><img src="{{ $image }}" alt="" style="height: 3em; width:3em"></td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{ route('item.delete', ['item_id' => $item->item_id]) }}"

@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\Models\Address;
 use App\Models\Items;
+use Illuminate\Auth\Events\Failed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ItemService
 {
@@ -27,11 +29,20 @@ class ItemService
     {
         $file = $request->file('file_upload');
 
-        // File info
-        // https://stackoverflow.com/questions/30964849/how-to-get-file-properties-from-a-post-request-using-laravel-slim
-        echo "File name : " . $file->getClientOriginalName() . "<br/>";
-        echo "File extension: " . $file->getClientOriginalExtension() . "<br/>";;
-        echo "File size : " . $file->getSize() . "<br/>";;
+        $filestore = $file->store('avatars');
+        $hashName = $file->hashName();
+        $explodeName = explode('.', $hashName, 2);
+        //query
+        $query = DB::table('items')->insert([
+            'item_name' => $request->input('name'),
+            'item_price' => $request->input('price'),
+            'category_id' => $request->input('cate_id'),
+            'image_token' => $explodeName[0],
+            'image_extension' => $explodeName[1]
+        ]);
+        if ($query) {
+            return redirect()->back();
+        };
     }
 
     public function insertItem()
