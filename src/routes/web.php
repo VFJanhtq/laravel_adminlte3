@@ -40,5 +40,7 @@ Route::prefix('item')->group(function () {
         Route::post('/update', [App\Http\Controllers\ItemController::class, 'update'])->name('item.update');
         Route::post('/create', [App\Http\Controllers\ItemController::class, 'create'])->name('item.create');
         Route::get('/delete', [App\Http\Controllers\ItemController::class, 'delete'])->name('item.delete');
+        Route::get('/upload/image', [App\Http\Controllers\ItemController::class, 'getUploadImage'])->name('item.get.image.upload');
+        Route::post('/upload', [App\Http\Controllers\ItemController::class, 'postUploadImage'])->name('item.post.image.upload');
     });
 });

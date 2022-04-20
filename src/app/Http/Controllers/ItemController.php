@@ -32,6 +32,16 @@ class ItemController extends Controller
         // return view("items.detail", ['items' => $items]);
     }
 
+    public function getUploadImage(Request $request)
+    {
+        return view('items.upload_image');
+    }
+
+    public function postUploadImage(Request $request)
+    {
+        $item = $this->itemService->uploadImage($request);
+    }
+
     public function test()
     {
         echo randomToken(20);
