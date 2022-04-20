@@ -89,4 +89,8 @@ class ItemController extends Controller
             return redirect()->route('item.index');
         }
     }
+
+    public function store(Request $request)
+    {
+    }
 }

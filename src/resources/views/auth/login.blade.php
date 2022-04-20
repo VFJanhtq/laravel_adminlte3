@@ -31,7 +31,6 @@
 
                 <form method="post" action="{{ url('/login') }}">
                     @csrf
-
                     <div class="input-group mb-3">
                         <input type="email" name="email" {{-- xu ly gia tri nay --}} value="{{ old('email') }}"
                             placeholder="Email" class="form-control @error('email') is-invalid @enderror">

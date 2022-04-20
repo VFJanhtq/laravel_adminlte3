@@ -31,11 +31,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::post('add', [App\Http\Controllers\PersonsController::class, 'add'])->name('add');
 // Route::get('delete/{id}', [DetailPersonsController::class, 'delete'])->name('delete');
 
+
 Route::prefix('item')->group(function () {
-    Route::get('/test', [App\Http\Controllers\ItemController::class, 'test'])->name('test.token');
-    Route::get('/index', [App\Http\Controllers\ItemController::class, 'index'])->name('item.index');
-    Route::get('/detail', [App\Http\Controllers\ItemController::class, 'detail'])->name('item.detail');
-    Route::post('/update', [App\Http\Controllers\ItemController::class, 'update'])->name('item.update');
-    Route::post('/create', [App\Http\Controllers\ItemController::class, 'create'])->name('item.create');
-    Route::get('/delete', [App\Http\Controllers\ItemController::class, 'delete'])->name('item.delete');
+    Route::middleware(['CheckLogin'])->group(function () {
+        Route::get('/test', [App\Http\Controllers\ItemController::class, 'test'])->name('test.token');
+        Route::get('/index', [App\Http\Controllers\ItemController::class, 'index'])->name('item.index');
+        Route::get('/detail', [App\Http\Controllers\ItemController::class, 'detail'])->name('item.detail');
+        Route::post('/update', [App\Http\Controllers\ItemController::class, 'update'])->name('item.update');
+        Route::post('/create', [App\Http\Controllers\ItemController::class, 'create'])->name('item.create');
+        Route::get('/delete', [App\Http\Controllers\ItemController::class, 'delete'])->name('item.delete');
+    });
 });

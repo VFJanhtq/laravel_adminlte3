@@ -47,20 +47,5 @@ class ItemService
 
     public function createItem($request)
     {
-        $request->validated([
-            'name' => 'required',
-            'price' => 'required',
-            'category_id' => 'required',
-        ]);
-
-        $query = DB::table('items')->insert([
-            'item_name' => $request->input('name'),
-            'item_price' => $request->input('price'),
-            'category_id' => $request->input('cate_id')
-        ]);
-
-        if ($query) {
-            return back();
-        }
     }
 }
